@@ -3,25 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+	.modal {
+		@apply h-screen w-screen bg-black/50 fixed top-0 left-0 flex items-center justify-center opacity-0 pointer-events-none duration-500;
+	}
+	.modal.active {
+		@apply opacity-100 pointer-events-auto;
+	}
+
+	.modal__content {
+		@apply p-5 rounded-xl bg-white scale-50 transition-all w-1/2;
+	}
+
+	.modal__content.active {
+		@apply scale-100;
+	}
 }
